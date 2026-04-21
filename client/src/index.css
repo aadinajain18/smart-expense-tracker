@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+
+  /* Semantic Theme Variables mapped to Tailwind Classes */
+  --color-page: var(--theme-page);
+  --color-surface: var(--theme-surface);
+  --color-surface-hover: var(--theme-surface-hover);
+  --color-border: var(--theme-border);
+  --color-divider: var(--theme-divider);
+  --color-input: var(--theme-input);
+
+  --color-text-primary: var(--theme-text-primary);
+  --color-text-secondary: var(--theme-text-secondary);
+  --color-text-tertiary: var(--theme-text-tertiary);
+  --color-text-muted: var(--theme-text-muted);
+
+  --color-accent-600: #059669;
+  --color-accent-500: #10b981;
+  --color-accent-400: #34d399;
+  --color-accent-300: #6ee7b7;
+  --color-accent-glow: rgba(16, 185, 129, 0.15);
+
+  --color-cyan-500: #06b6d4;
+  --color-cyan-400: #22d3ee;
+
+  --color-rose-500: #f43f5e;
+  --color-rose-400: #fb7185;
+
+  --color-amber-500: #f59e0b;
+  --color-amber-400: #fbbf24;
+
+  --color-violet-500: #8b5cf6;
+  --color-violet-400: #a78bfa;
+}
+
+/* Light Theme (Default) */
+:root {
+  --theme-page: #f4f6f8;
+  --theme-surface: #ffffff;
+  --theme-surface-hover: #f8fafc;
+  --theme-border: #e2e8f0;
+  --theme-divider: #cbd5e1;
+  --theme-input: #f8fafc;
+
+  --theme-text-primary: #0f172a;
+  --theme-text-secondary: #475569;
+  --theme-text-tertiary: #64748b;
+  --theme-text-muted: #94a3b8;
+}
+
+/* Dark Theme */
+.dark {
+  --theme-page: #0a0a0f;    /* Was --color-dark-950 */
+  --theme-surface: #111118;   /* Was --color-dark-900 */
+  --theme-surface-hover: #1a1a24; /* Was --color-dark-800 */
+  --theme-input: #1a1a24;
+  --theme-border: #2e2e3d;    /* Was --color-dark-600 */
+  --theme-divider: #3d3d50;   /* Was --color-dark-500 */
+
+  --theme-text-primary: #ffffff;
+  --theme-text-secondary: #b0b0c4; /* Was --color-dark-200 */
+  --theme-text-tertiary: #8888a0;  /* Was --color-dark-300 */
+  --theme-text-muted: #62627a;     /* Was --color-dark-400 */
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--theme-page); }
+::-webkit-scrollbar-thumb { background: var(--theme-divider); border-radius: 3px; }
+
+/* Global overrides */
+body {
+  background-color: var(--theme-page);
+  color: var(--theme-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth transitions globally */
+*, *::before, *::after {
+  transition-property: background-color, border-color, box-shadow, transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card utility */
+.glass, .card {
+  background-color: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  box-shadow: 0 4px 20px -2px rgba(0,0,0, 0.05);
+}
+
+.dark .glass, .dark .card {
+  box-shadow: 0 8px 30px -4px rgba(0,0,0, 0.5);
+  border: 1px solid rgba(255,255,255, 0.04);
+}
+
+/* Input focus ring */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-accent-glow), 0 0 0 3px var(--color-accent-400);
+  border-color: var(--color-accent-500);
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Staggered children */
+.stagger > *:nth-child(1) { animation-delay: 0.04s; }
+.stagger > *:nth-child(2) { animation-delay: 0.08s; }
+.stagger > *:nth-child(3) { animation-delay: 0.12s; }
+.stagger > *:nth-child(4) { animation-delay: 0.16s; }
+.stagger > *:nth-child(5) { animation-delay: 0.20s; }
+.stagger > *:nth-child(6) { animation-delay: 0.24s; }
+.stagger > *:nth-child(7) { animation-delay: 0.28s; }
+.stagger > *:nth-child(8) { animation-delay: 0.32s; }
