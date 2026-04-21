@@ -1,142 +1,82 @@
 # 💰 Smart Expense Tracker
 
-A full-stack expense tracking application built with **React**, **Tailwind CSS**, **Node.js**, **Express**, and **MongoDB**.
+[![Deployed App](https://img.shields.io/badge/Live_Demo-Vercel-success?style=for-the-badge&logo=vercel)](https://client-chi-nine-37.vercel.app)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green?style=for-the-badge&logo=nodedotjs)](https://nodejs.org)
+[![React](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react)](https://react.dev)
+
+A modern, full-stack personal finance application designed to help users track their spending habits, visualize categories, and interact with a smart finance chatbot. 
+
+## 🌟 Live Demo
+[**Click here to view the live deployed application!**](https://client-chi-nine-37.vercel.app)
 
 ---
 
-## 📁 Project Structure
+## 🚀 Features
 
-```
-Smart Expense Tracker/
-├── client/                 # React frontend (Vite)
-│   ├── public/
-│   ├── src/
-│   │   ├── App.jsx         # Root component
-│   │   ├── App.css
-│   │   ├── index.css       # Tailwind CSS entry
-│   │   └── main.jsx        # React entry point
-│   ├── index.html
-│   ├── vite.config.js      # Vite + Tailwind + API proxy config
-│   └── package.json
-│
-├── server/                 # Node.js backend (Express)
-│   ├── src/
-│   │   ├── config/
-│   │   │   └── db.js       # MongoDB connection
-│   │   ├── controllers/
-│   │   │   └── expenseController.js
-│   │   ├── middleware/
-│   │   │   └── errorMiddleware.js
-│   │   ├── models/
-│   │   │   └── Expense.js  # Mongoose schema
-│   │   ├── routes/
-│   │   │   └── expenseRoutes.js
-│   │   ├── utils/          # Utility functions (empty)
-│   │   └── server.js       # Express entry point
-│   ├── .env                # Environment variables
-│   ├── .env.example        # Env template
-│   └── package.json
-│
-├── .gitignore
-└── README.md
-```
+- **Real-Time Dashboard**: Visualize your monthly expenses categorized through responsive pie and bar charts powered by Recharts.
+- **Smart Chatbot Integration**: Ask questions about your spending naturally! If provided an OpenAI key, it uses GPT-4 to respond; otherwise, it safely falls back to a custom offline logic parser.
+- **Secure User Authentication**: Full JWT-based registration and login system to keep your financial data privatized.
+- **Dynamic Budget Setting**: Set category limits and see real-time color-coded progress bars to prevent overspending.
+- **Beautiful Glassmorphism UI**: Built cleanly with Vite and Tailwind CSS 4 for a visually stunning desktop and mobile user experience.
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Technology Stack
 
-| Layer      | Technology                |
-| ---------- | ------------------------- |
-| Frontend   | React 19 + Vite 8         |
-| Styling    | Tailwind CSS 4            |
-| Backend    | Node.js + Express 4       |
-| Database   | MongoDB + Mongoose 8      |
-| Dev Tools  | Nodemon, ESLint, Morgan   |
+| Layer | Tools Used |
+| :--- | :--- |
+| **Frontend** | React 19, Vite, Tailwind CSS 4, Axios, Recharts, React Router Dom |
+| **Backend** | Node.js, Express, Socket.io, JsonWebToken |
+| **Database** | MongoDB Atlas, Mongoose |
+| **Deployment** | Vercel (Frontend Client) & Render (Backend API) |
 
 ---
 
-## 🚀 Getting Started
+## 💻 Local Setup Instructions
+
+Want to run this project locally? Follow these steps:
 
 ### Prerequisites
+- Node.js installed (v18+)
+- A local MongoDB instance or a free MongoDB Atlas URI
 
-- **Node.js** v18+ — [download](https://nodejs.org)
-- **MongoDB** — local install or [MongoDB Atlas](https://www.mongodb.com/atlas) (free tier)
-
-### 1. Clone the project
-
+### 1. Clone the Repository
 ```bash
-cd "Smart Expense Tracker"
+git clone https://github.com/aadinajain18/smart-expense-tracker.git
+cd smart-expense-tracker
 ```
 
-### 2. Install dependencies
-
-```bash
-# Install client dependencies
-cd client
-npm install
-
-# Install server dependencies
-cd ../server
-npm install
-```
-
-### 3. Configure environment
-
-Edit `server/.env` and set your MongoDB connection string:
-
+### 2. Configure Environment Variables
+Create a `.env` file inside the `server/` directory and add:
 ```env
-PORT=5000
+PORT=5001
 NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017/smart-expense-tracker
-JWT_SECRET=your_secret_here
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=any_random_string_here
 ```
 
-### 4. Start the development servers
+*(Note: Provide an `OPENAI_API_KEY` only if you want AI chatbot features, otherwise leave blank to use the offline fallback)*
 
-**Terminal 1 — Backend:**
+### 3. Install Dependencies & Run
 
+**Backend:**
 ```bash
 cd server
+npm install
 npm run dev
 ```
 
-**Terminal 2 — Frontend:**
-
+**Frontend:**
+Open a new terminal tab and run:
 ```bash
 cd client
+npm install
 npm run dev
 ```
 
-The React app runs on **http://localhost:5173** and proxies API calls (`/api/*`) to the Express server on **http://localhost:5000**.
-
----
-
-## 📡 API Endpoints (Scaffolded)
-
-| Method   | Endpoint              | Description           |
-| -------- | --------------------- | --------------------- |
-| `GET`    | `/api/health`         | Health check          |
-| `GET`    | `/api/expenses`       | Get all expenses      |
-| `POST`   | `/api/expenses`       | Create new expense    |
-| `GET`    | `/api/expenses/:id`   | Get single expense    |
-| `PUT`    | `/api/expenses/:id`   | Update an expense     |
-| `DELETE` | `/api/expenses/:id`   | Delete an expense     |
-
-> All route handlers return placeholder responses — implement logic in the controllers.
-
----
-
-## 📝 Next Steps
-
-- [ ] Implement CRUD logic in `expenseController.js`
-- [ ] Wire controllers to routes
-- [ ] Build the frontend dashboard UI
-- [ ] Add charts & data visualization
-- [ ] Add user authentication (JWT)
-- [ ] Add budget tracking & smart insights
+The application will now be running at `http://localhost:5173`.
 
 ---
 
 ## 📄 License
-
-MIT
+MIT License
