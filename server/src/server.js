@@ -20,16 +20,17 @@ connectDB();
 
 const app = express();
 const httpServer = createServer(app);
-const frontendOrigins = [
-  process.env.FRONTEND_URL,
-  'http://localhost:5173'
-].filter(Boolean);
+const corsOptions = {
+  origin: (origin, callback) => {
+    callback(null, true); // Allow any origin for seamless frontend connection
+  },
+  credentials: true,
+};
 
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.NODE_ENV === 'production' ? frontendOrigins : '*',
+    ...corsOptions,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
   }
 });
 
@@ -51,10 +52,7 @@ app.use((req, res, next) => {
 });
 
 // Middleware
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production' ? frontendOrigins : '*',
-  credentials: true,
-}));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
