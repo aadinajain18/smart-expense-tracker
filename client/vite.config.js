@@ -29,10 +29,18 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // Split large vendor libraries into separate cached chunks
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'chart-vendor': ['recharts'],
-          'socket-vendor': ['socket.io-client'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('recharts')) {
+              return 'chart-vendor';
+            }
+            if (id.includes('socket.io-client')) {
+              return 'socket-vendor';
+            }
+          }
         },
       },
     },
